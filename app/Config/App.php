@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'C:/xampp/htdocs/cashbook/';
+    public $baseURL = 'C:/wamp64/www/cashbook/';
 
     /**
      * --------------------------------------------------------------------------
