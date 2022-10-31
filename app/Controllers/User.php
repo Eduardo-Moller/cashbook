@@ -2,25 +2,53 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
+use App\Models\UserModel;
+
+use function PHPUnit\Framework\returnSelf;
+
 class User extends BaseController
 {
-
-    function __construct()
+    public function index()
     {
-        $modelUser = model("User");
+        return view('em_construcao');
     }
 
-    function auth()
-    {
-        $email = $this->request->getPost("email");
-        $password = $this->request->getPost("password");
 
-        $this->modelUser->find();
+    public function login()
+    {
+        echo view('user/login');
+
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        $userModel = new UserModel();
+
+        $user = $userModel->asArray()->where('email', $email)->first();
+
+
+        if (isset($user)) {
+
+            $senha = md5($password);
+            
+            if ($user['password'] == $senha) {
+                print_r($user);
+                session()->set('user', $user);
+                // $_SESSION['user'] = $user;
+                return redirect()->to(base_url());
+            } else {
+                var_dump($user);
+                $_SESSION['msgs'][] = [
+                    'class' => 'danger',
+                    'msg' => 'Conta não encontrada'
+                ];
+            }
+        }
     }
 
-    function login()
+    public function logout()
     {
-
-        return view("user/login");
+        session()->destroy();
+        return redirect()->to(base_url('user/login'));
     }
 }

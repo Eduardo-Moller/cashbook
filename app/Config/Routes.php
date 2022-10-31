@@ -35,9 +35,20 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->get('/user/login/', 'Users::login');
-$routes->get('/user/logout/', 'Users::logout');
+$routes->get('/', 'HomeController::index');
+$routes->get('/moviments', 'MovimentsController::index');
+$routes->get('/reports', 'ReportsController::index');
+$routes->get('/users', 'User::index');
+$routes->match(['get', 'post'], 'moviments/filtrar', 'MovimentsController::filtrar');
+$routes->get('/moviments/pdf', 'MovimentsController::MovimentsPdf');
+
+$routes->group('user', static function ($routes) {
+    $routes->match(['get', 'post'], 'login', 'User::login');
+    $routes->get('logout', 'User::logout');
+});
+
+
+
 
 /*
  * --------------------------------------------------------------------

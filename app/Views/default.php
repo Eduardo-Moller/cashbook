@@ -30,13 +30,16 @@
             width: 60%;
             margin: 0 auto;
         }
+        .bg-darkk{
+            background-color:#363636;
+        }
     </style>
     <link href="<?php echo  base_url() ?>/public/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-darkk">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="<?php echo base_url() ?>/public/assets/templates/default/images/cifrao.png" style="width:3rem" class="d-inline-block align-text-top" />
@@ -47,22 +50,21 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?php echo base_url() ?>">Home</a>
+                            <a class="text-white nav-link active" aria-current="page" href="<?php echo base_url() ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url() ?>/moviments">Moviment</a>
+                            <a class="text-white nav-link" href="<?php echo base_url() ?>/moviments">Moviment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo base_url() ?>/reports">Reports</a>
+                            <a class="text-white nav-link" href="<?php echo base_url() ?>/reports">Reports</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="<?php echo base_url() ?>/users">Users</a>
+                            <a class="text-white nav-link " href="<?php echo base_url() ?>/users">Users</a>
                         </li>
                     </ul>
                     <span class="navbar-text">
-                        <a href="<?php echo base_url()  ?>users/logout" title="<?php //echo $_SESSION['user']['name'] 
-                                                                                ?>">
-                            <i class="bi-person" style="color:#F00"></i>
+                        <a href="<?php echo base_url() ?>/user/logout">
+                            <button class="btn btn-danger text-white p-2" style="color:#F00">SAIR</button>
                         </a>
 
                     </span>
