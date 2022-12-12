@@ -9,35 +9,25 @@
     <div class="wrap">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            google.charts.load('current', {
-                'packages': ['corechart']
-            });
-            google.charts.setOnLoadCallback(drawChart);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Descrição', 'Valor'],
+          <?php  foreach($graficos as $grafico):?> 
+          ['<?php echo $grafico['description']?>', <?php echo $grafico['value']?>],
+          <?php endforeach;?>  
+        ]);
+        var options = {
+          title: 'Histórico de movimentos',
+          curveType: 'function'
+        };
 
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Mês', 'input', 'output'],
-                    <?php
-                    $values = $this->data['list'];
-                    foreach ($values as $value) {
-                    ?>['<?php echo $value['date']; ?>', parseFloat(<?php echo $value['input']; ?>), parseFloat(<?php echo $value['output']; ?>)],
-                    <?php } ?>
-                ]);
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-
-                var options = {
-                    title: 'Frequencia de ações',
-                    curveType: 'function',
-                    legend: {
-                        position: 'bottom'
-                    }
-                };
-
-                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-                chart.draw(data, options);
-            }
-        </script>
+        chart.draw(data, options);
+      }
+    </script>
         </head>
 
         <body>

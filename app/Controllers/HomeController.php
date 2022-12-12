@@ -11,8 +11,8 @@ class HomeController extends BaseController
     public function index()
     {
         $movModel = new MovimentsModel();
-        $list=$movModel->list();
-        $data['list'] = $list;
+        $list=$movModel->findAll();
+		$data['graficos']=$list;
         $input=$movModel->input();
         $data['input'] = $input;
         $output=$movModel->output();
